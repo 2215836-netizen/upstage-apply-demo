@@ -1,76 +1,79 @@
-# 🚀 Global Intelligence MVP (GIM)
+# 🚀 Project DEEP SCAN
+### **"전 세계 뉴스를 꿰뚫는 AI의 시선, 24시간 깨어있는 SGR의 전략실"**
 
-**"데이터를 전략적 자산으로"**
-
-Global Intelligence MVP(GIM)는 특정 산업(예: 반도체, AI, 모빌리티)의 글로벌 뉴스를 실시간으로 수집하고, LLM을 활용해 **전략적 기회와 위협(SWOT)**을 자동으로 분석해주는 로컬 대시보드입니다.
+> **"From Noise to Signal"** — 정보의 홍수 속에서 **0.1%의 '진짜' 기회**만 건져 올립니다.
 
 ---
 
-## 🎯 프로젝트 목표
-경영진과 전략 분석가가 방대한 뉴스 데이터 속에서 **핵심 인사이트**를 즉시 파악하고, 글로벌 이슈에 대한 **초동 대응 시나리오**를 신속하게 수립할 수 있도록 지원합니다.
+## 📋 프로젝트 개요 (Overview)
 
-## ✨ 핵심 기능
-1.  **실시간 뉴스 기사 수집**: 사용자가 입력한 키워드(예: "HBM", "Solid-state Battery") 관련 최신 글로벌 뉴스 수집 (NewsAPI 등 활용).
-2.  **AI 기반 전략 분석**: LLM(OpenAI/Ollama)을 통해 수집된 뉴스를 분석하고, **Opportunity(기회)**와 **Threat(위협)** 중심의 전략 리포트 생성.
-3.  **대시보드 시각화**: Streamlit 기반의 직관적인 UI로 분석 결과 및 뉴스 소스별 통계 차트 제공.
+**Project DEEP SCAN**은 방대한 글로벌 뉴스 데이터를 실시간으로 수집하고, **LLM(Large Language Model)** 에이전트가 이를 분석하여 **경영진을 위한 '전략 리포트(Executive Report)'**를 자동으로 생성해주는 인텔리전스 시스템입니다.
 
-## 🛠️ 기술 스택
-*   **Language**: Python 3.9+
-*   **UI/Web**: Streamlit
-*   **Data Acquisition**: NewsAPI, Requests
-*   **AI/LLM**: LangChain, OpenAI API (or Local LLM)
-*   **Data Analysis**: Pandas, Plotly/Matplotlib
+삼성글로벌리서치(SGR)와 같은 전략 조직에서 **자료 조사 시간을 획기적(10배)으로 단축**하고, 단순 정보 취합이 아닌 **'전략적 의사결정'**에 집중할 수 있도록 돕습니다.
 
-## 🚀 시작하기 (Getting Started)
+## ✨ 핵심 기능 (Key Features)
 
-### 1. 필수 조건 (Prerequisites)
-*   Python 3.9 이상
-*   OpenAI API Key (또는 로컬 LLM 환경)
-*   NewsAPI Key
+### 1. 🔍 Data Collector (지능형 수집)
+- 사용자가 지정한 키워드(예: `HBM`, `Solid-state Battery`)와 관련된 최신 **글로벌 뉴스**를 실시간으로 트래킹합니다.
+- 광고성 기사나 단순 중복 기사를 필터링합니다.
 
-### 2. 설치 (Installation)
+### 2. 🧠 Strategic Analyzer (심층 분석)
+- **OpenAI GPT-4** 레벨의 추론 능력을 활용하여 단순 요약이 아닌 **SWOT 분석**을 수행합니다.
+- **Opportunity(기회)**: 시장의 변화 속에서 기업이 취할 수 있는 전략적 기회 포착
+- **Threat(위협)**: 경쟁사 동향, 규제 변화 등 잠재적 리스크 조기 감지
+
+### 3. 📊 Executive Dashboard (원페이지 리포트)
+- **Streamlit** 기반의 직관적인 대시보드 UI를 제공합니다.
+- 복잡한 설정 없이 **"키워드 입력 ➡ 원클릭 리포트 생성"**의 간결한 유저 플로우(User Flow)를 가집니다.
+
+---
+
+## 🛠️ 기술 스택 (Tech Stack)
+
+| Layer | Component | Description |
+| :--- | :--- | :--- |
+| **Frontend** | `Streamlit` | Python 기반의 반응형 웹 대시보드 구축 |
+| **Logic** | `LangChain` | LLM 워크플로우 오케스트레이션 및 프롬프트 관리 |
+| **AI Model** | `OpenAI API` | GPT-3.5/4 모델을 활용한 고도화된 텍스트 분석 |
+| **Data Source** | `NewsAPI` | 글로벌 80,000+ 소스의 실시간 뉴스 데이터 파이프라인 |
+
+---
+
+## 🚀 빠른 실행 (Quick Start)
+
+이 프로젝트는 **Windows/Mac 로컬 환경**에서 즉시 실행 가능하도록 설계되었습니다.
+
+### 1. 간편 실행 (Windows 추천)
+프로젝트 폴더 내의 **`run_app.bat`** 파일을 더블 클릭하세요! (자동으로 가상환경을 잡고 실행됩니다.)
+
+### 2. 수동 실행
 ```bash
-# 저장소 클론
-git clone https://github.com/2215836-netizen/upstage-apply-demo.git
-cd upstage-apply-demo/Global-Intelligence-MVP
+# 1. 가상환경 활성화 (Windows)
+.\venv\Scripts\activate
 
-# 가상환경 생성 및 활성화 (선택 사항)
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# 의존성 패키지 설치
+# 2. 필수 라이브러리 설치 (최초 1회)
 pip install -r requirements.txt
-```
 
-### 3. 환경 설정 (Configuration)
-프로젝트 루트에 `.env` 파일을 생성하고 API 키를 입력하세요.
-```env
-OPENAI_API_KEY=your_openai_api_key
-NEWS_API_KEY=your_newsapi_key
-```
-
-### 4. 실행 (Usage)
-```bash
+# 3. 앱 실행
 streamlit run app.py
 ```
-브라우저가 열리면 사이드바에 API 키를 입력하거나 설정을 확인한 후, 분석하고 싶은 **키워드**를 입력하여 분석을 시작하세요.
-
-## 📂 프로젝트 구조
-```
-Global-Intelligence-MVP/
-├── src/                # 소스 코드 디렉터리
-│   ├── collector.py    # 뉴스 데이터 수집 모듈
-│   ├── analyzer.py     # LLM 전략 분석 엔진
-│   └── app.py          # Streamlit 메인 애플리케이션
-├── data/               # 데이터 저장소 (임시)
-├── tests/              # 테스트 코드
-├── .env                # 환경 변수 (API Key 등 - gitignore)
-├── requirements.txt    # 의존성 목록
-└── README.md           # 프로젝트 문서
-```
-
-## 🤝 기여 (Contribution)
-이 프로젝트는 삼성글로벌리서치(SGR) 지원을 위한 MVP 프로젝트입니다. 아이디어나 개선 사항은 Issue를 통해 제안해 주세요.
 
 ---
-© 2024 Global Intelligence MVP Team.
+
+## 📂 프로젝트 구조 (Structure)
+```
+Project-DEEP-SCAN/
+├── 📄 app.py           # [Main] Streamlit 대시보드 엔트리포인트
+├── 📄 collector.py     # [Data] 뉴스 수집 및 전처리 모듈
+├── 📄 analyzer.py      # [AI] LangChain 기반 전략 분석 엔진
+├── 📄 run_app.bat      # [Util] 원클릭 실행 스크립트
+├── 📄 requirements.txt # [Env] 프로젝트 의존성 목록
+└── 📄 presentation.md  # [Doc] 기획안 및 발표 자료 (MARP)
+```
+
+---
+
+## 👨‍💻 만든 사람 (Author)
+
+**SGR Data Analyst (지원자)**
+- "Data-driven Decision Making을 넘어, **AI-driven Strategy**를 지향합니다."
