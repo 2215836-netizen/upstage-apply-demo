@@ -93,3 +93,13 @@ backgroundImage: url('https://marp.app/assets/hero-background.svg')
 
 # 감사합니다
 ## Q & A
+
+---
+
+## 📖 부록: 용어 설명 (Glossary)
+
+*   **MVP (Minimum Viable Product)**: 핵심 기능만 갖춘 초기 모델
+*   **SWOT 분석**: 강점/약점/기회/위협을 파악하는 경영 전략 프레임워크
+*   **LLM (Large Language Model)**: 인간처럼 텍스트를 이해/생성하는 거대 AI 모델
+*   **Streamlit**: Python만으로 빠르게 웹 대시보드를 만드는 라이브러리
+*   **NewsAPI**: 전 세계 뉴스 기사를 실시간으로 가져오는 데이터 소스
