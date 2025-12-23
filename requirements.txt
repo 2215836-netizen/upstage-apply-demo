@@ -2,6 +2,6 @@ streamlit
 pandas
 requests
 langchain
-langchain-openai
+langchain-groq
 python-dotenv
 plotly

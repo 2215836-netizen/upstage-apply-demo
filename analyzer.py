@@ -1,49 +1,85 @@
-from langchain_openai import ChatOpenAI
-from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 
-def analyze_strategy(news_text, api_key):
+def analyze_strategy(news_text, api_key, model_choice=None):
     """
-    Analyzes the news text using OpenAI to generate a strategic report (SWOT/PEST).
+    Analyzes the news text using Groq (Llama 3) to generate a strategic report.
     """
     if not api_key:
-        return "⚠️ OpenAI API Key is missing. Please enter it in the sidebar."
+        return "⚠️ Groq API Key is missing. Please enter it in the sidebar."
     
     if not news_text or len(news_text) < 50:
         return "⚠️ 분석할 데이터가 부족합니다."
 
     try:
-        # Initialize LLM
-        llm = ChatOpenAI(
-            temperature=0.7, 
-            model_name="gpt-3.5-turbo", 
-            openai_api_key=api_key
+        # Initialize LLM (Groq Llama 3.3 is the new flagship)
+        llm = ChatGroq(
+            model_name="llama-3.3-70b-versatile", # Latest stable model
+            groq_api_key=api_key,
+            temperature=0.7
         )
 
         template = """
-        당신은 글로벌 리서치 펌의 수석 전략가(CSO)입니다.
-        삼성글로벌리서치(SGR) 경영진을 위해, 아래 뉴스 요약본을 바탕으로 심층적인 '전략 인사이트 리포트'를 작성하세요.
-        
-        반드시 **한국어**로 작성해야 하며, 다음 형식을 따르세요:
-        
-        # 📑 전략적 인사이트 리포트
-        
-        ## 1. Executive Summary (요약)
-        (현재 시장 상황을 3문장 이내로 핵심만 요약)
-        
-        ## 2. 주요 기회 요인 (Opportunities)
-        - (뉴스 데이터에 기반한 구체적인 기회 요인 나열)
-        
-        ## 3. 잠재적 위협 (Threats)
-        - (경쟁사 동향, 규제, 기술적 위협 등)
-        
-        ## 4. 전략적 제언 (Recommendations)
-        - **단기 전략**: (즉시 실행 가능한 조치)
-        - **장기 전략**: (미래 방향성 제안)
+        당신은 삼성글로벌리서치(SGR)의 **'SGR 드림팀'**입니다. 
+        세 명의 전문가(Persona)가 모여 토론한 뒤, 최종 전략 리포트를 작성하는 역할을 맡았습니다.
+
+        ---
+        **[토론 참여자]**
+        1. **👨‍💼 거시경제 전문가 (Macro Economist)**: 금리, 환율, 지정학적 리스크, 글로벌 경제 흐름 분석.
+        2. **🧑‍💻 산업 기술 전문가 (Tech Specialist)**: 반도체/AI 기술 트렌드, 경쟁사(TSMC, Intel 등) 기술 격차 분석.
+        3. **🕵️ 전략 컨설턴트 (Strategy Consultant)**: 위 두 분석을 종합하여, 삼성전자가 당장 실행해야 할 **구체적 Action Plan** 도출.
+
+        ---
+        **[입력 뉴스 데이터]**:
+        {news_content}
+        ---
+
+        위 뉴스 데이터를 바탕으로, 세 전문가의 관점을 통합하여 **SGR 스타일의 전략 리포트**를 작성하세요.
+        반드시 **한국어**로 작성해야 하며, 아래 포맷을 엄격히 준수하세요:
+
+        # 📑 SGR 드림팀 전략 리포트: [주제 키워드]
+
+        ## 1. 🌐 거시경제 및 시장 환경 (Macro View)
+        > *"숲을 먼저 봅니다." - 거시경제 전문가*
+        - (환율, 금리, 국가 간 정책 갈등 등 거시적 관점에서의 기회/위협 요인 분석)
+
+        ## 2. 🔬 산업 및 기술 딥다이브 (Tech Dive)
+        > *"기술 디테일에 악마가 있습니다." - 산업 기술 전문가*
+        - (경쟁사 기술 동향, 수율 문제, 차세대 패키징 등 기술적 관점의 심층 분석)
+
+        ## 3. 🚀 SGR 전략 제언 (Action Plan)
+        > *"그래서, 당장 무엇을 해야 합니까?" - 전략 컨설턴트*
+        - **Short-term (1년 내)**: (구체적인 실행 과제, 예: 장비 수급, 특정 고객사 타겟팅)
+        - **Long-term (3년 후)**: (R&D 방향성, M&A 필요성 등)
+
+        ## ⚡ Executive Summary (한 줄 요약)
+        (바쁜 임원진을 위한 1문장 핵심 결론)
         
         ---
-        **참고 뉴스 데이터 (News Context)**:
-        {news_content}
+        **[점수 산정 기준 (Scoring Criteria)]**
+        1. **Risk Score (0~100)**: 발생 가능성 (Probability)
+           - 0~30: 가능성 낮음 / 단순 루머
+           - 31~70: 가능성 있음 / 점진적 진행
+           - 71~100: 확실시됨 / 이미 진행 중인 위기
+        
+        2. **Impact Score (0~100)**: 영향력 심각성 (Severity)
+           - 0~30: 단기적/국지적 영향 (무시 가능)
+           - 31~70: 실적/주가에 유의미한 타격
+           - 71~100: 사업 존폐 위기 / 경영진 결단 필요
+        
+        ---
+        **[System Instruction: Output JSON Data]**
+        리포트 작성이 끝난 후, 반드시 맨 마지막 줄에 아래 형식으로 **JSON 데이터 하나만** 추가하세요.
+        이 점수는 2x2 매트릭스 시각화에 사용됩니다. (0~100점)
+        그리고 **왜 이 점수를 부여했는지 1문장으로 근거(Reason)**를 함께 적으세요.
+        
+        [[JSON_START]]
+        {{
+            "risk_score": 85,
+            "impact_score": 90,
+            "reason": "경쟁사의 3나노 수율 안정화 소식으로 인해 점유율 하락 위협이 확실시됨(71점 이상)."
+        }}
+        [[JSON_END]]
         """
         
         prompt = PromptTemplate(
@@ -51,11 +87,10 @@ def analyze_strategy(news_text, api_key):
             template=template,
         )
         
-        # In a newer LangChain version this might be LLMChain, but simplest way:
-        formatted_prompt = prompt.format(news_content=news_text[:10000]) # simple truncation to avoid token limits
-        response = llm.predict(formatted_prompt)
+        formatted_prompt = prompt.format(news_content=news_text[:15000]) # Groq handles large context well
+        response = llm.invoke(formatted_prompt).content
         
         return response
 
     except Exception as e:
-        return f"분석 중 오류 발생: {str(e)}"
+        return f"❌ 분석 중 오류가 발생했습니다:\n{str(e)}\n\n(Tip: 사용 가능한 모델을 찾는데 실패했을 수 있습니다.)"

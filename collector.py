@@ -20,7 +20,7 @@ def fetch_industry_news(query, api_key):
         'from': from_date,
         'sortBy': 'relevancy',
         'apiKey': api_key,
-        'language': 'en', # English news for better Global analysis
+        # 'language': 'en', # Commented out to allow queries like '반도체' to find Korean news
         'pageSize': 20
     }
 

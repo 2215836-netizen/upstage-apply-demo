@@ -3,27 +3,31 @@ chcp 65001 > nul
 cd /d "%~dp0"
 
 echo ========================================================
-echo 🚀 Project DEEP SCAN 실행 중...
-echo (SGR AI Strategy Team)
+echo 🚀 Project DEEP SCAN (Auto-Repair Mode)
 echo ========================================================
 echo.
 
-:: 1. 가상환경(venv) 위치 찾기 (상위 폴더 or 현재 폴더)
+:: 1. 가상환경 경로 감지
 set VENV_PATH=..\venv
 if exist "venv" set VENV_PATH=venv
 
+echo [CHECK] 가상환경 위치: %VENV_PATH%
+
 if not exist "%VENV_PATH%" (
-    echo [ERROR] 가상환경(venv)을 찾을 수 없습니다.
-    echo 프로젝트 폴더 구조를 확인해 주세요.
+    echo [ERROR] 가상환경을 찾을 수 없습니다.
     pause
     exit
 )
 
-echo 2. 애플리케이션을 시작합니다...
-echo (브라우저가 자동으로 열릴 때까지 잠시만 기다려 주세요.)
+:: 2. 필수 라이브러리 자동 설치/점검 (Self-Healing)
 echo.
+echo [INFO] 필수 라이브러리를 점검하고 설치합니다...
+echo (시간이 조금 걸릴 수 있습니다. 잠시만 기다려주세요.)
+"%VENV_PATH%\Scripts\pip.exe" install -r requirements.txt
 
-:: activate 스크립트 없이, 가상환경의 Python을 직접 실행 (보안 오류 해결)
-"%VENV_PATH%\Scripts\python" -m streamlit run app.py
+:: 3. 앱 실행
+echo.
+echo [INFO] 모든 준비 완료! 앱을 실행합니다...
+"%VENV_PATH%\Scripts\python.exe" -m streamlit run app.py
 
 pause

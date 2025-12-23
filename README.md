@@ -17,12 +17,17 @@
 - 사용자가 지정한 키워드(예: `HBM`, `Solid-state Battery`)와 관련된 최신 **글로벌 뉴스**를 실시간으로 트래킹합니다.
 - 광고성 기사나 단순 중복 기사를 필터링합니다.
 
-### 2. 🧠 Strategic Analyzer (심층 분석)
-- **OpenAI GPT-4** 레벨의 추론 능력을 활용하여 단순 요약이 아닌 **SWOT 분석**을 수행합니다.
-- **Opportunity(기회)**: 시장의 변화 속에서 기업이 취할 수 있는 전략적 기회 포착
-- **Threat(위협)**: 경쟁사 동향, 규제 변화 등 잠재적 리스크 조기 감지
+### 2. 🧠 SGR Multi-Agent Engine (드림팀 분석)
+단일 AI가 아닌, **3명의 가상 전문가(Persona)**가 토론하는 **Multi-Agent Chain**을 구현했습니다.
+- **👨‍💼 Macro Economist**: 거시경제, 환율, 지정학적 리스크 분석
+- **🧑‍💻 Tech Specialist**: 반도체 수율, 차세대 패키징(HBM), 경쟁사 기술 벤치마킹
+- **🕵️ Strategy Consultant**: 위 분석을 종합하여 즉시 실행 가능한 Action Plan 도출
 
-### 3. 📊 Executive Dashboard (원페이지 리포트)
+### 3. 🤔 XAI (Explainable AI) Risk Matrix
+- **2x2 Risk Heatmap**: 리스크의 '발생 가능성(Risk)'과 '영향도(Impact)'를 시각화하여 위기 수준을 한눈에 파악합니다.
+- **판단 근거(Rationale)**: AI가 왜 그런 점수를 주었는지 "설명 가능한 근거"를 제시합니다.
+
+### 4. 📊 Executive Dashboard (원페이지 리포트)
 - **Streamlit** 기반의 직관적인 대시보드 UI를 제공합니다.
 - 복잡한 설정 없이 **"키워드 입력 ➡ 원클릭 리포트 생성"**의 간결한 유저 플로우(User Flow)를 가집니다.
 
@@ -34,7 +39,7 @@
 | :--- | :--- | :--- |
 | **Frontend** | `Streamlit` | Python 기반의 반응형 웹 대시보드 구축 |
 | **Logic** | `LangChain` | LLM 워크플로우 오케스트레이션 및 프롬프트 관리 |
-| **AI Model** | `OpenAI API` | GPT-3.5/4 모델을 활용한 고도화된 텍스트 분석 |
+| **AI Model** | `Groq Llama 3` | Meta Llama 3 (70B) 모델을 활용한 초고속/고성능 전략 분석 (Free) |
 | **Data Source** | `NewsAPI` | 글로벌 80,000+ 소스의 실시간 뉴스 데이터 파이프라인 |
 
 ---

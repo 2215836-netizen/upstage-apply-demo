@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project DEEP SCAN - Presentation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
+    <style>
+        .reveal {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+        }
+
+        .reveal h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+        }
+
+        .reveal h2 {
+            color: #34495e;
+            font-size: 1.8em;
+        }
+
+        .reveal h3 {
+            font-size: 1.4em;
+        }
+
+        .reveal strong {
+            color: #e74c3c;
+        }
+
+        .reveal table {
+            font-size: 0.8em;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: left;
+        }
+
+        .reveal section {
+            text-align: left;
+        }
+
+        .reveal .lead {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Title -->
+            <section class="lead">
+                <h1>🚀 Project: DEEP SCAN</h1>
+                <h3>"전 세계 뉴스를 지켜보는 AI, 우리 회사의 24시간 전략실"</h3>
+                <p><strong>복잡한 뉴스 홍수 속에서 '진짜 중요한 기회'만 찾아냅니다.</strong></p>
+                <p>SGR AI Strategy Team | 2025.12.22</p>
+            </section>
+
+            <!-- Slide 2: Overview -->
+            <section>
+                <h1>📋 1. 프로젝트 개요</h1>
+                <h3>"뉴스, 너무 많아서 힘드시죠?"</h3>
+                <ul>
+                    <li><strong>Why?</strong>: 매일 쏟아지는 수만 건의 뉴스, <strong>언제 다 읽으시겠습니까?</strong></li>
+                    <li><strong>What?</strong>: AI가 잠도 안 자고 지켜보다가 <strong>중요한 신호</strong>만 잡아냅니다.</li>
+                    <li><strong>How?</strong>: <strong>전략 보고서</strong>를 자동으로 써줘서 일하는 속도가 <strong>10배 빨라집니다.</strong>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: Users -->
+            <section>
+                <h1>👥 2. 누가 쓰나요? (사용자)</h1>
+                <h3>삼성글로벌리서치(SGR) 전략 분석가</h3>
+                <div class="columns">
+                    <div>
+                        <h3>😫 현재의 어려움</h3>
+                        <ul>
+                            <li>아침마다 수십 개 영어 뉴스 사이트 뒤지기</li>
+                            <li>번역하고 요약하느라 시간 다 보냄</li>
+                            <li><strong>"그래서 이게 우리한테 왜 중요한데?"</strong> 깊은 생각 할 시간이 없음</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>😍 원하는 것</h3>
+                        <ul>
+                            <li><strong>실시간</strong>: 뉴스가 뜨자마자 알기</li>
+                            <li><strong>깊이</strong>: 단순 요약 말고 <strong>전략적 분석</strong></li>
+                            <li><strong>실천</strong>: 당장 뭘 해야 할지 제안받기</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Features -->
+            <section>
+                <h1>🔑 3. 핵심 기능 (어떤 일을 하나요?)</h1>
+                <ol>
+                    <li><strong>🔍 뉴스 수집 (Data Collector)</strong>
+                        <br>"HBM", "배터리" 같은 키워드만 주면 전 세계를 뒤져옵니다.
+                    </li>
+                    <li><strong>🧠 SGR 드림팀 분석 (Multi-Agent)</strong>
+                        <br><strong>3명의 전문가 AI</strong> (거시경제/기술/전략)가 토론하여 심층 리포트 작성
+                    </li>
+                    <li><strong>🎯 리스크 매트릭스 (Risk Heatmap)</strong>
+                        <br>위험도와 영향도를 <strong>차트</strong>로 시각화 + <strong>점수 산정 근거</strong> 제시
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Slide 5: Comparison -->
+            <section>
+                <h1>🆚 4. 챗GPT랑 뭐가 다른가요?</h1>
+                <h3>"우리는 '채팅'이 아니라 '전문 업무 도구'입니다."</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>구분</th>
+                            <th>🤖 일반 챗GPT</th>
+                            <th>🚀 Project DEEP SCAN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>분석 깊이</strong></td>
+                            <td>단순 요약</td>
+                            <td><strong>3인 전문가(드림팀) 토론 분석</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>시각화</strong></td>
+                            <td>텍스트 위주</td>
+                            <td><strong>위험도 매트릭스(2x2) 차트 제공</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>설명력</strong></td>
+                            <td>결과만 통보</td>
+                            <td><strong>왜 위험한지 '근거'를 설명 (XAI)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Slide 6: Tech Stack -->
+            <section>
+                <h1>💻 5. 사용된 기술 (Tech Stack)</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>구분</th>
+                            <th>기술 이름</th>
+                            <th>역할 (쉽게 말하면)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>화면</strong></td>
+                            <td>Streamlit</td>
+                            <td>웹사이트 화면을 만드는 도구</td>
+                        </tr>
+                        <tr>
+                            <td><strong>관리</strong></td>
+                            <td>LangChain</td>
+                            <td>AI에게 일을 순서대로 시키는 관리자</td>
+                        </tr>
+                        <tr>
+                            <td><strong>두뇌</strong></td>
+                            <td>Groq (Llama 3)</td>
+                            <td><strong>현존 가장 빠른 속도</strong>의 초고성능 무료 AI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>재료</strong></td>
+                            <td>NewsAPI</td>
+                            <td>전 세계 뉴스를 실시간으로 가져오는 곳</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Slide 7: User Flow -->
+            <section>
+                <h1>🔄 6. 사용 방법 (User Flow)</h1>
+                <h3>"딱 3단계면 끝납니다"</h3>
+                <ol>
+                    <li><strong>입력</strong> ⌨️
+                        <br>궁금한 주제 입력 (예: "테슬라 미래 전략")
+                    </li>
+                    <li><strong>처리</strong> ⚙️
+                        <br>AI가 뉴스를 읽고 고민합니다. (수집 ➡ 분석)
+                    </li>
+                    <li><strong>결과</strong> 📑
+                        <br><strong>전략 보고서</strong>가 짠! 하고 나옵니다.
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Slide 8: Benefits -->
+            <section>
+                <h1>📊 7. 기대 효과 (뭐가 좋아지나요?)</h1>
+                <blockquote>"빠르고, 정확하게"</blockquote>
+                <ul>
+                    <li>⚡ <strong>일이 10배 빨라짐</strong>
+                        <br>자료 조사: 3시간 ➡ <strong>1분</strong>에 끝!
+                    </li>
+                    <li>🎯 <strong>판단을 도와줌</strong>
+                        <br>"그냥 이런 일이 있었다"가 아니라 <strong>"그래서 이렇게 해야 한다"</strong>를 알려줌
+                    </li>
+                    <li>🛡️ <strong>위험 대비</strong>
+                        <br>경쟁사의 움직임이나 위험 요소를 <strong>누구보다 빨리</strong> 발견
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Slide 9: Roadmap -->
+            <section>
+                <h1>🗺️ 8. 앞으로의 계획 (Roadmap)</h1>
+                <ul>
+                    <li><strong>1단계 (현재)</strong> ✅
+                        <br>뉴스 보고 AI가 분석해주는 기능 완성!
+                    </li>
+                    <li><strong>2단계 (확장)</strong> 🔜
+                        <ul>
+                            <li><strong>주식/공시 연동</strong>: 주가랑 실적도 같이 봅니다.</li>
+                            <li><strong>자동 알림</strong>: 중요한 일 생기면 슬랙/메신저로 알려줍니다.</li>
+                        </ul>
+                    </li>
+                    <li><strong>3단계 (최적화)</strong> 🚀
+                        <br><strong>우리만의 AI</strong>: 회사 보안을 위해 우리 회사 전용 AI를 만듭니다.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Slide 10: Thank You -->
+            <section class="lead">
+                <h1>감사합니다 🙇‍♂️</h1>
+                <h3>질문 있으신가요? (Q & A)</h3>
+            </section>
+
+            <!-- Slide 11: Demo -->
+            <section>
+                <h1>💡 부록: 데모 실행 방법</h1>
+                <ol>
+                    <li>터미널 실행</li>
+                    <li>명령어:
+                        <pre><code class="language-powershell">streamlit run app.py</code></pre>
+                    </li>
+                </ol>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            center: true,
+            controls: true,
+            progress: true,
+            slideNumber: true
+        });
+    </script>
+</body>
+
+</html>
