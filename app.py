@@ -90,61 +90,110 @@ def load_css():
     </style>
     """, unsafe_allow_html=True)
 
-# --- Graph Functions ---
+# --- Graph Functions (Premium Aesthetic) ---
 def render_sentiment_gauge(score):
-    if score >= 50: color = "#22c55e" 
-    elif score <= -50: color = "#ef4444" 
-    else: color = "#e5e7eb"
+    # Premium Colors
+    if score >= 50: 
+        bar_color = "#10b981" # Emerald-500
+        bg_color = "#dcfce7" # Emerald-100
+    elif score <= -50: 
+        bar_color = "#f43f5e" # Rose-500
+        bg_color = "#ffe4e6" # Rose-100
+    else: 
+        bar_color = "#64748b" # Slate-500
+        bg_color = "#f1f5f9" # Slate-100
 
     fig = go.Figure(go.Indicator(
         mode = "gauge+number",
         value = score,
         domain = {'x': [0, 1], 'y': [0, 1]},
-        title = {'text': "Market Sentiment (시장 심리)", 'font': {'size': 14, 'color': "#1e293b"}},
+        title = {'text': "Market Sentiment (시장 심리)", 'font': {'size': 15, 'color': "#475569", 'family': "Pretendard"}},
+        number = {'font': {'size': 40, 'color': "#1e293b", 'family': "Pretendard"}},
         gauge = {
-            'axis': {'range': [-100, 100], 'tickwidth': 1, 'tickcolor': "#333"},
-            'bar': {'color': color},
+            'axis': {'range': [-100, 100], 'tickwidth': 1, 'tickcolor': "#94a3b8"},
+            'bar': {'color': bar_color, 'thickness': 0.75}, # Thicker colored bar
             'bgcolor': "white",
-            'borderwidth': 2,
-            'bordercolor': "#e2e8f0",
-            'steps': [{'range': [-100, -50], 'color': "#fef2f2"}, {'range': [-50, 50], 'color': "#f8fafc"}, {'range': [50, 100], 'color': "#f0fdf4"}],
-            'threshold': {'line': {'color': "black", 'width': 4}, 'thickness': 0.75, 'value': score}
+            'borderwidth': 0,
+            'steps': [
+                {'range': [-100, 100], 'color': "#f8fafc"} # Subtle subtle background
+            ],
+            'threshold': {
+                'line': {'color': "#0f172a", 'width': 3},
+                'thickness': 0.8,
+                'value': score
+            }
         }
     ))
-    fig.update_layout(height=220, margin=dict(l=30, r=30, t=40, b=10))
+    fig.update_layout(height=250, margin=dict(l=30, r=30, t=50, b=10), paper_bgcolor="rgba(0,0,0,0)", font={'family': "Pretendard"})
     return fig
 
 def render_bias_gauge(score):
-    if score <= 30: color = "#22c55e" # Green
-    elif score <= 70: color = "#f59e0b" # Orange
-    else: color = "#ef4444" # Red
+    # 0 (Neutral) -> 100 (Biased)
+    # Gradient-like perception using steps
+    # Good (Low Bias): Green, Bad (High Bias): Red
+    
+    if score <= 30: bar_color = "#22c55e"
+    elif score <= 70: bar_color = "#f59e0b"
+    else: bar_color = "#ef4444"
 
     fig = go.Figure(go.Indicator(
         mode = "gauge+number",
         value = score,
         domain = {'x': [0, 1], 'y': [0, 1]},
-        title = {'text': "Media Bias (편향성 지수)", 'font': {'size': 14, 'color': "#1e293b"}},
+        title = {'text': "Media Bias (편향성 지수)", 'font': {'size': 15, 'color': "#475569", 'family': "Pretendard"}},
+        number = {'font': {'size': 40, 'color': "#1e293b", 'family': "Pretendard"}, 'suffix': "%"},
         gauge = {
-            'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#333"},
-            'bar': {'color': color},
+            'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#94a3b8"},
+            'bar': {'color': bar_color, 'thickness': 0.75},
             'bgcolor': "white",
-            'borderwidth': 2,
-            'bordercolor': "#e2e8f0",
-            'steps': [{'range': [0, 30], 'color': "#f0fdf4"}, {'range': [30, 70], 'color': "#fffbeb"}, {'range': [70, 100], 'color': "#fef2f2"}],
-            'threshold': {'line': {'color': "black", 'width': 4}, 'thickness': 0.75, 'value': score}
+            'borderwidth': 0,
+            'steps': [
+                {'range': [0, 100], 'color': "#f8fafc"}
+            ],
+            'threshold': {'line': {'color': "#0f172a", 'width': 3}, 'thickness': 0.8, 'value': score}
         }
     ))
-    fig.update_layout(height=220, margin=dict(l=30, r=30, t=40, b=10))
+    fig.update_layout(height=250, margin=dict(l=30, r=30, t=50, b=10), paper_bgcolor="rgba(0,0,0,0)", font={'family': "Pretendard"})
     return fig
 
 def render_sentiment_breakdown(pos, neg):
+    # Modern stacked bar with rounded aesthetic via layout
     fig = go.Figure()
-    fig.add_trace(go.Bar(y=['Sentiment'], x=[pos], name='Positive', orientation='h', marker=dict(color='#22c55e'), text=[f"{pos}% 긍정"], textposition='auto', hoverinfo='text'))
-    fig.add_trace(go.Bar(y=['Sentiment'], x=[neg], name='Negative', orientation='h', marker=dict(color='#ef4444'), text=[f"{neg}% 부정"], textposition='auto', hoverinfo='text'))
+    
+    # Positive
+    fig.add_trace(go.Bar(
+        y=[''], x=[pos], 
+        name='Positive', 
+        orientation='h', 
+        marker=dict(color='#10b981', line=dict(width=0)), # Emerald
+        text=[f"😊 긍정 {pos}%"], 
+        textposition='inside', 
+        insidetextanchor='middle',
+        textfont=dict(color='white', family="Pretendard", size=14)
+    ))
+    
+    # Negative
+    fig.add_trace(go.Bar(
+        y=[''], x=[neg], 
+        name='Negative', 
+        orientation='h', 
+        marker=dict(color='#f43f5e', line=dict(width=0)), # Rose
+        text=[f"😟 부정 {neg}%"], 
+        textposition='inside', 
+        insidetextanchor='middle',
+        textfont=dict(color='white', family="Pretendard", size=14)
+    ))
+    
     fig.update_layout(
-        barmode='stack', height=80, margin=dict(l=10, r=10, t=25, b=10),
-        xaxis=dict(showgrid=False, range=[0, 100]), yaxis=dict(showgrid=False, showticklabels=False),
-        showlegend=False, title={'text': "긍정 vs 부정 요인 비율", 'font': {'size': 13}, 'x': 0.5}
+        barmode='stack', 
+        height=100, 
+        margin=dict(l=0, r=0, t=30, b=10),
+        xaxis=dict(showgrid=False, showticklabels=False, range=[0, 100], fixedrange=True),
+        yaxis=dict(showgrid=False, showticklabels=False, fixedrange=True),
+        showlegend=False,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        title={'text': "긍정 vs 부정 요인 비율 (Sentiment Ratio)", 'font': {'size': 14, 'color': '#64748b'}, 'x': 0.5}
     )
     return fig
 
@@ -244,16 +293,23 @@ if __name__ == "__main__":
         elif st.session_state['current_page'] == 'Search':
             st.header("🏢 삼성 계열사 심층 분석 (Corporate Deep Dive)")
             
-            # --- New Affiliate Selector ---
-            affiliates = ["직접 입력", "삼성전자 (Samsung Electronics) + HBM", "삼성전자 (Samsung Electronics) + 파운드리", "삼성SDI (Battery)", "삼성SDS (Cloud/AI)", "삼성전기 (MLCC)", "삼성디스플레이 (OLED)", "삼성물산", "삼성바이오로직스"]
-            selected_affiliate = st.selectbox("분석 대상 계열사 선택", affiliates)
+            # --- New Affiliate Selector Logic ---
+            search_type = st.radio("검색 방식 선택", ["🏢 주요 계열사 선택", "✍️ 키워드 직접 입력"], horizontal=True)
             
-            if selected_affiliate == "직접 입력":
-                user_query = st.text_input("분석할 키워드 입력", "HBM 반도체")
-                target_query = user_query
-            else:
-                # Extract keyword part for display or use directly
-                # Simplified query logic: Just take the name or add specific context
+            if search_type == "🏢 주요 계열사 선택":
+                affiliates = [
+                    "삼성전자 (Samsung Electronics) + HBM", 
+                    "삼성전자 (Samsung Electronics) + 파운드리", 
+                    "삼성SDI (Battery)", 
+                    "삼성SDS (Cloud/AI)", 
+                    "삼성전기 (MLCC)", 
+                    "삼성디스플레이 (OLED)", 
+                    "삼성물산 (Trading/Construction)", 
+                    "삼성바이오로직스 (CDMO)"
+                ]
+                selected_affiliate = st.selectbox("분석 대상 계열사", affiliates)
+                
+                # Logic to map selection to query
                 if "삼성전자" in selected_affiliate and "HBM" in selected_affiliate:
                     target_query = "Samsung Electronics HBM memory"
                 elif "파운드리" in selected_affiliate:
@@ -269,9 +325,13 @@ if __name__ == "__main__":
                 elif "바이오" in selected_affiliate:
                     target_query = "Samsung Biologics CDMO"
                 else:
-                    target_query = "Samsung Electronics" # Default fallback
+                    target_query = "Samsung C&T" # Default fallback for C&T
+
+            else: # Manual Input
+                user_query = st.text_input("분석할 키워드 입력 (예: 엔비디아, TSMC, 자율주행)", "HBM 반도체")
+                target_query = user_query
             
-            st.info(f"💡 분석 키워드: **{target_query}**")
+            st.info(f"💡 현재 분석 키워드: **{target_query}**")
             
             if st.button("계열사 심층 리포트 생성", type="primary"):
                 is_ready = True
@@ -300,9 +360,12 @@ if __name__ == "__main__":
                         else: text_part, score_data = report, {}
                     except: text_part, score_data = report, {}
 
-                    tab1, tab2, tab3 = st.tabs(["📑 전략 리포트", "🎯 감성 & 편향성", "📰 뉴스 데이터"])
+                    tab1, tab2, tab3 = st.tabs(["📑 전략 리포트", "🎯 감성 & 편향성", "📰 원문 기사 (Source Data)"])
                     
-                    with tab1: st.markdown(text_part)
+                    with tab1: 
+                        st.markdown(text_part)
+                        st.markdown("---")
+                        st.info("ℹ️ 이 리포트의 근거가 된 뉴스 원문은 상단 **'📰 원문 기사 (Source Data)'** 탭에서 확인하실 수 있습니다.")
                     
                     with tab2:
                         c1, c2 = st.columns(2)
