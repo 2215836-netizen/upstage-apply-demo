@@ -54,30 +54,49 @@ def analyze_strategy(news_text, api_key, model_choice=None):
 
         ## ⚡ Executive Summary (한 줄 요약)
         (바쁜 임원진을 위한 1문장 핵심 결론)
-        
+
         ---
-        **[점수 산정 기준 (Scoring Criteria)]**
-        1. **Risk Score (0~100)**: 발생 가능성 (Probability)
-           - 0~30: 가능성 낮음 / 단순 루머
-           - 31~70: 가능성 있음 / 점진적 진행
-           - 71~100: 확실시됨 / 이미 진행 중인 위기
+        ## ⚡ Executive Summary (한 줄 요약)
+        (바쁜 임원진을 위한 1문장 핵심 결론)
+
+        ---
+        **[분석 기준 (Analysis Criteria)]**
+        1. **Sentiment Score (-100 ~ 100)**: 시장의 감성 (Market Sentiment)
+           - -100 ~ -50: 매우 부정적 (Bearish)
+           - -49 ~ 49: 중립 (Neutral)
+           - 50 ~ 100: 매우 긍정적 (Bullish)
         
-        2. **Impact Score (0~100)**: 영향력 심각성 (Severity)
-           - 0~30: 단기적/국지적 영향 (무시 가능)
-           - 31~70: 실적/주가에 유의미한 타격
-           - 71~100: 사업 존폐 위기 / 경영진 결단 필요
+        2. **Breakdown (긍정 vs 부정 비중)**
+           - 기사 내용 전체를 100으로 봤을 때, 긍정적 뉘앙스와 부정적 뉘앙스의 비율
         
+        3. **Bias Score (0~100)**: 기사의 편향성 (Media Bias)
+           - 0~30: 매우 중립적/객관적 (Fact-based)
+           - 31~70: 다소 편향됨 (Opinionated)
+           - 71~100: 매우 편향됨/선동적 (Highly Biased)
+
         ---
         **[System Instruction: Output JSON Data]**
         리포트 작성이 끝난 후, 반드시 맨 마지막 줄에 아래 형식으로 **JSON 데이터 하나만** 추가하세요.
-        이 점수는 2x2 매트릭스 시각화에 사용됩니다. (0~100점)
-        그리고 **왜 이 점수를 부여했는지 1문장으로 근거(Reason)**를 함께 적으세요.
+        이 데이터는 시각화에 사용됩니다.
         
         [[JSON_START]]
         {{
-            "risk_score": 85,
-            "impact_score": 90,
-            "reason": "경쟁사의 3나노 수율 안정화 소식으로 인해 점유율 하락 위협이 확실시됨(71점 이상)."
+            "sentiment_score": 75,
+            "sentiment_label": "Bullish (강세)",
+            "positivity_ratio": 80,
+            "negativity_ratio": 20,
+            "bias_score": 25,
+            "bias_label": "Neutral (중립적)",
+            "summary_reason": "AI 반도체 수요 폭증으로 인한 실적 개선 기대감 반영.",
+            "positive_drivers": [
+                "엔비디아 H200 주문량 3배 증가",
+                "삼성전자의 3나노 수율 개선 소식",
+                "미국 등 주요국의 반도체 지원금 확대"
+            ],
+            "negative_risks": [
+                "지정학적 리스크로 인한 공급망 불안",
+                "원자재 가격 상승 압박"
+            ]
         }}
         [[JSON_END]]
         """
